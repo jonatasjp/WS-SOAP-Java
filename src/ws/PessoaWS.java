@@ -1,17 +1,17 @@
 package ws;
 
-import java.util.List;
-
 import javax.jws.WebMethod;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 
-import beans.Pessoa;
+import beans.ListaPessoas;
 
 @WebService
 public class PessoaWS {
 
-	@WebMethod
-	public List<Pessoa> buscarPessoas() {
-		return Pessoa.criarPessoas();
+	@WebMethod(operationName="todasAsPessoas")
+	@WebResult(name="pessoas")
+	public ListaPessoas buscarPessoas() {
+		return ListaPessoas.criarPessoas();
 	}
 }
