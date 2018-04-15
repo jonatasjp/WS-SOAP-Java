@@ -1,6 +1,8 @@
 package ws;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -9,6 +11,7 @@ import javax.jws.WebService;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 
+import beans.Filtro;
 import beans.Filtros;
 import beans.ListaPessoas;
 import beans.Pessoa;
@@ -22,14 +25,14 @@ public class PessoaWS {
 	@ResponseWrapper(localName="pessoas")
 	@RequestWrapper(localName="listaPessoas")
 	public List<Pessoa> buscarPessoas(@WebParam(name="filtros") Filtros filtros) {
-       
-//		List<Filtro> lista = filtros.getLista();
-        return ListaPessoas.criarPessoas(null);
+		List<Filtro> lista = Optional.ofNullable(filtros).map(Filtros::getLista).orElse(new ArrayList<>());
+        return ListaPessoas.buscarPessoas(lista);
 	}
 	
 	@WebMethod(operationName="cadastrarPessoa")
 	@WebResult(name="pessoa")
-	public Pessoa cadastrarPessoa(Token token, Pessoa pessoa) {
+	public Pessoa cadastrarPessoa(@WebParam(name="token") Token token, 
+			@WebParam(name="pessoa") Pessoa pessoa) {
 		
 		return pessoa;
 	}

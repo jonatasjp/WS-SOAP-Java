@@ -2,7 +2,6 @@ package beans;
 
 public class Filtro {
 
-//	private TipoItem tipo;
 	private String nome;
 
 	public String getNome() {
@@ -12,6 +11,5 @@ public class Filtro {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
+
 }
