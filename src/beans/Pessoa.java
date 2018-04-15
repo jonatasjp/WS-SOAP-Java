@@ -1,8 +1,5 @@
 package beans;
 
-import java.util.Arrays;
-import java.util.List;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
